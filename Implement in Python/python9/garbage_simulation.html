@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Garbage Management Simulation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .simulation-container {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+        }
+        .canvas-area {
+            flex-grow: 2;
+            background-color: white;
+            border: 2px solid #ddd;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .controls {
+            flex-grow: 1;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        canvas {
+            width: 100%;
+            height: 500px;
+            border: 1px solid #ccc;
+        }
+        .stats {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        button {
+            margin: 5px;
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="simulation-container">
+        <div class="canvas-area">
+            <canvas id="simulationCanvas"></canvas>
+        </div>
+        <div class="controls">
+            <h2>Simulation Controls</h2>
+            <div>
+                <button onclick="setupSimulation()">Setup</button>
+                <button onclick="startSimulation()">Start</button>
+                <button onclick="stopSimulation()">Stop</button>
+                <button onclick="stepSimulation()">Step</button>
+            </div>
+            
+            <div class="stats">
+                <div>
+                    <strong>Steps:</strong> 
+                    <span id="stepCount">0</span>
+                </div>
+                <div>
+                    <strong>Arrests:</strong> 
+                    <span id="arrestCount">0</span>
+                </div>
+                <div>
+                    <strong>Agents:</strong> 
+                    <span id="agentCount">0</span>
+                </div>
+                <div>
+                    <strong>Garbage Items:</strong> 
+                    <span id="garbageCount">0</span>
+                </div>
+                <div>
+                    <strong>Simulation Status:</strong> 
+                    <span id="simulationStatus">Not Started</span>
+                </div>
+            </div>
+
+            <div>
+                <label>Simulation Speed</label>
+                <input type="range" min="1" max="30" value="10" id="speedControl">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('simulationCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        let simulationData = {
+            stepCount: 0,
+            arrests: 0,
+            agents: {},
+            garbageItems: [],
+            status: 'stopped'
+        };
+
+        function setupSimulation() {
+            fetch('http://localhost:5000/setup', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    simulationData.status = 'setup';
+                    updateUI(data);
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function startSimulation() {
+            fetch('http://localhost:5000/start', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    simulationData.status = 'running';
+                    updateUI(data);
+                    // Optional: Auto-step based on speed
+                    autoStep();
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function stopSimulation() {
+            fetch('http://localhost:5000/stop', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    simulationData.status = 'stopped';
+                    updateUI(data);
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function stepSimulation() {
+            fetch('http://localhost:5000/step', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    updateUI(data);
+                    drawSimulation(data);
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function autoStep() {
+            if (simulationData.status === 'running') {
+                const speed = document.getElementById('speedControl').value;
+                stepSimulation();
+                setTimeout(autoStep, 1000 / speed);
+            }
+        }
+
+        function updateUI(data) {
+            document.getElementById('stepCount').textContent = data.step_count || simulationData.stepCount;
+            document.getElementById('arrestCount').textContent = data.arrests || simulationData.arrests;
+            document.getElementById('simulationStatus').textContent = simulationData.status;
+            
+            if (data.agents) {
+                const totalAgents = Object.values(data.agents).reduce((sum, agents) => sum + agents.length, 0);
+                document.getElementById('agentCount').textContent = totalAgents;
+                document.getElementById('garbageCount').textContent = (data.garbage_items || []).length;
+            }
+
+            simulationData = { ...simulationData, ...data };
+        }
+
+        function drawSimulation(data) {
+            canvas.width = canvas.clientWidth;
+            canvas.height = canvas.clientHeight;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            const cellSize = 10;
+            const colors = {
+                normal_agents: 'brown',
+                improper_disposers: 'red',
+                proper_disposers: 'green',
+                police_agents: 'blue',
+                garbage_collectors: 'purple',
+                cameras: 'gray',
+                garbage_items: 'black'
+            };
+
+            // Draw agents
+            Object.entries(data.agents || {}).forEach(([type, agents]) => {
+                ctx.fillStyle = colors[type];
+                agents.forEach(agent => {
+                    ctx.fillRect(
+                        agent.x * cellSize, 
+                        agent.y * cellSize, 
+                        cellSize, 
+                        cellSize
+                    );
+                });
+            });
+
+            // Draw garbage items
+            ctx.fillStyle = colors.garbage_items;
+            (data.garbage_items || []).forEach(item => {
+                ctx.beginPath();
+                ctx.moveTo(
+                    item.x * cellSize + cellSize / 2, 
+                    item.y * cellSize
+                );
+                ctx.lineTo(
+                    item.x * cellSize, 
+                    item.y * cellSize + cellSize
+                );
+                ctx.lineTo(
+                    item.x * cellSize + cellSize, 
+                    item.y * cellSize + cellSize
+                );
+                ctx.closePath();
+                ctx.fill();
+            });
+        }
+
+        // Initial setup
+        canvas.width = canvas.clientWidth;
+        canvas.height = canvas.clientHeight;
+    </script>
+</body>
+</html>

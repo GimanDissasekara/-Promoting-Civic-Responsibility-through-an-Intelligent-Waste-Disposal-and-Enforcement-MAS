@@ -1,0 +1,138 @@
+Agents :
+	Agents who dispose of garbage correctly
+	Agents who dispose of garbage incorrectly
+	Agents who identify garbage sites
+	Garbage collectors
+	Agents who arrest those who dispose of garbage in the wrong places
+	Agents who show garbage collectors the best routes to reach garbage sites
+	Agents who point out places to dump garbage
+
+Task:
+	Those who dispose of garbage correctly
+		Put it only in the places where it should be put
+		Walk randomly in the environment
+
+	Those who dispose of garbage incorrectly
+		Dispose of garbage randomly while walking. Those who dispose of garbage randomly
+		Walk randomly in the environment
+
+	Those who identify garbage sites
+		Walk randomly in the environment
+		Identify each place where garbage has been disposed of
+
+	Garbage collectors
+		Go to garbage sites as soon as possible, plan a route and collect garbage at those sites.
+		Walk randomly in the environment
+
+	Those who arrest those who dispose of garbage in wrong places
+		Identify them according to the tips of agents who provide information about those who dispose of garbage incorrectly.
+		Arrest those who dispose of garbage incorrectly
+		Walk randomly in the environment
+
+	Those who show garbage collectors the best routes to garbage sites
+		Show garbage collectors the best routes to garbage sites.
+
+	Garbage dumpsters
+		Indicates places to dump garbage to all those who dispose of garbage.
+
+	Information agents on illegal waste disposers
+		Information on illegal waste disposers is provided to those who arrest those who dispose of garbage in illegal places
+		Randomly move through the environment
+
+
+
+
+
+සාමාන්‍ය පරිසරයේ සිටින සාමාන්‍ය ඒජන්තවරු
+සසම්භාවීව පරිසරය තුල ගමන් කරයි
+තද දම්පැහැයෙන් නිරූපණය වේ
+කසළ ඇති ස්තාන ගැන නගර සභාවට පැමිණිලි කරයි.
+ඇතැම් ඒජන්තවරු කසළ නිවැරදිව බැහැර කරන්නන් ලෙස කටයුතු කරයි
+ඔවුන් කසළ දැමිය යුතු ස්තාන වල පමණක් ඒවා දමයි
+එසේ දැමීමේදී ඔවුන්ට ලකුණක් එකතු වේ.
+සසම්භාවීව පරිසරය තුල ගමන් කරයි
+
+ඇතැම් සාමාන්‍ය ඒජන්තවරුම කසළ වැරදි ලෙස බැහැර කරයි.
+එසේ කසළ බැහැර කරන්නේ සසම්භාවීවය.
+එසේ කසළ බැහැර කිරීමෙන් පසු ඔවුන්ට ස්ෘණ ලකුණක් එකතු වේ. සසම්භාවීව පරිසරය තුල ගමන් කරයි
+
+ඒජන්ත වරුන්ගේ අගය ළකුණු 0 ට අඩූ ස්ෘණ ලකුණු ලබන ඒජන්ත වරුන් පොලීසිය විසින් අතඩංගුවට ගනී.
+එසේ අත් අඩංගුවට ගත් පසු එම ඒජන්ත වරයා අතඩංගුවට පත් වූ ස්තානයේ නවතින අතර , තද රතු පැහැයෙන් දිස් කරයි
+
+කසළ ඇති ස්ථාන හඳුනා ගන්නා කැමරා ඒජන්ත වරු
+සසම්භාවීව පරිසරය තුල ස්ථාපනය කර ඇත.
+කසළ බැහැර කර ඇති සෑම ස්ථානයක් ම හඳුනාගනී
+සුදු පැහැයෙන් ස්ෘජුකෝණාස්‍රයකින් නිරූපණය වේ
+පරිසරයේ ඇති කැමරා ගණන පරිශීලකයාට වෙනස් කළ හැකි විය යුතුය
+කසළ බැහැරව ඇති ස්තාන නගර සභාවට දැවුම් දෙයි.
+කැමරා සඳහා නිශ්චිත වූ පරාසයක් ඇති අතර , එම පරාසය පරිශීලකයාට වෙනස් කළ හැකි විය යුතුය
+කසල බැහැර කිරීමේදී එම බැහැර කරන්නන්ට , වැරදි බැහැර කිරීමක් නම් ස්ෘණ ලකුනක් ලබා දෙයි
+
+කසළ එකතු කරන්නන්
+හැකි ඉක්මන් කසළ ඇති තැන් වලට , මාර්ගය යෝජනා කර පසු එම ස්තාන වලට ගොස් කසළ එකතු කරයි.
+සසම්භාවීව පරිසරය තුල ගමන් කරයි
+කොළ පැහැයෙන් ව්ෘත්තාකාර හැඩයකින් නිරූපණය වේ
+පරිසරය තුළ කසළ එකතු කරන්නන් ගණන පරිශීලකයාට වෙනස් කළ හැකිය.
+
+පොළිස් ඒජන්ත වරු
+කසළ වැරදි ලෙස බැහැර කරන්නන් ගැන නගර සභාවෙන් දත්ත ලබා ගෙන ඒවාට අනුව ඔවුන්ව හඳුනා ගනී.
+කසළ වැරදි ලෙස බැහැර කරන්නන් අතඩංගුවට ගනී 
+සසම්භාවීව පරිසරය තුල ගමන් කරයි
+කහ පැහැයෙන් නිරූපණය වේ
+
+නගර සභාව විසින් කසළ එකතු කරන්නන් ට කුණු ඇති ස්තාන වලට යාමට හොඳම මාර්ගය පෙන්වයි.
+නගර සභාව විසින් කසළ බැහැර කළ යුතු ස්තාන සෑම ඒජන්තවරයෙක්ටම පෙන්වයි
+තරමක් ලොකු තැඹිලි පැහැ සමචතුරස්‍රයකින් නිරූපණය කරයි
+පරිසරය තුල සියලුම ඒජන්ත වරුන්ට සසම්භාවීව ගමන් කල හැකිය.
+පරිසරය තුළ කසළ දැමීම සඳහා වෙන් කළ ස්ථාන ඇති අතර , ඒවා සස්ම්භාවීව පරිසරයේ ස්තිරව ක්‍රමලේඛය ඇරඹීමේදී නිර්මාණය වේ.
+පද්දතිය තුළ වැරදි ලෙස කසළ බැහැර වූ විට රතු පැහැ ත්‍රිකෝණයකින් ඒවා නිරූපණය වේ
+
+පද්දතිය විසින් වැරදි ලෙස කසල බැහැර කරන්නන් අතඩංගුවට ගත් ප්‍රමාණය දිස් කළයුතු අතර එය තිරයක් මඟින් නිරූපණය කරයි.
+
+
+
+Normal agents in the normal environment
+Randomly move through the environment
+Represented in dark purple
+Complain to the city council about places with garbage.
+Some agents act as proper garbage disposers
+They only throw garbage in the places where it is supposed to be thrown
+They get a mark for doing so.
+Randomly move through the environment
+
+Some normal agents themselves throw garbage incorrectly.
+They throw garbage randomly.
+After throwing garbage in this way, they get a negative mark. Randomly move through the environment
+
+Agents who get negative marks when the agent's score drops to 0 are arrested by the police.
+After being arrested, the agent stops at the place where he was arrested, and is shown in dark red
+
+The camera agents that detect garbage locations
+are randomly installed in the environment.
+They identify each place where garbage has been dumped
+They are represented by a rectangle in white
+The number of cameras in the environment should be changeable by the user
+The places where garbage has been dumped are reported to the municipal council.
+There is a specific range for the cameras, and that range should be changeable by the user
+When dumping garbage, those dumpers are given a negative mark if they make a wrong disposal
+
+The garbage collectors
+Go to the garbage locations as quickly as possible, suggest a route, and go to those locations to collect the garbage.
+They move randomly in the environment
+They are represented by a green circle
+The number of garbage collectors in the environment can be changed by the user
+
+Police agents
+Get data from the municipality about illegal waste disposal and identify them accordingly.
+Illegal waste disposal is arrested
+Randomly moves through the environment
+Represented in yellow
+
+The municipality shows the garbage collectors the best route to the garbage dumps.
+The municipality shows each agent the places where the garbage should be disposed of
+Represented by a fairly large orange square
+All agents can move randomly through the environment.
+There are designated places for dumping garbage in the environment, which are randomly created when the environment is started.
+When illegal waste is disposed of in the system, they are represented by a red triangle
+
+The system should display the number of illegal waste disposal arrests, which is represented by a screen.

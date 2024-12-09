@@ -1,0 +1,73 @@
+Project Description:
+
+This Multi-Agent System (MAS) will simulate a waste disposal management scenario within a city environment. The system will be designed with Communication, Coordination, and Negotiation at its core, which are essential features for enabling agent interactions and driving emergent behaviors like the Butterfly Effect and Self-Organizing behavior.
+
+Essential Features of the MAS:
+Communication:
+
+All agents will communicate with each other using Agent Communication Languages (ACL), which are based on speech act theory to simulate human-like communication for task delegation, requests, orders, and updates.
+The communication will include:
+Message Content: Details of the communication (e.g., status update, action request).
+Recipient: The intended agent(s) or group of agents to receive the message.
+Time: When the communication is sent (asynchronous or synchronous).
+Mode of Communication: Modes like peer-to-peer, broadcasting, or blackboard will be used:
+Peer-to-Peer: For direct communication between two agents, such as requests for garbage collection or police intervention.
+Broadcasting: To inform multiple agents about specific updates, such as illegal waste disposal or updates from the municipal council.
+Blackboard: A shared, accessible platform for all agents to exchange partial solutions or data (e.g., information about waste locations or feedback from the city council). This ensures agents can adapt by incorporating new information from others.
+Coordination:
+
+The system will feature coordination among agents to achieve efficient waste disposal management.
+Garbage collectors, proper garbage disposers, and police agents will coordinate their movements and tasks based on messages exchanged through the communication channels (peer-to-peer, broadcasting, and blackboard).
+The municipality will coordinate the overall waste disposal strategy by suggesting optimal routes for garbage collectors and informing agents about designated garbage disposal points.
+The agents will exhibit self-organizing behaviors, where their collective actions can form emergent properties. For instance, if one agent improperly disposes of garbage, it may trigger a chain reaction that affects how other agents move or dispose of garbage, creating a dynamic and unpredictable system.
+Negotiation:
+
+Agents will negotiate with each other to resolve conflicts or optimize their actions. For example:
+Garbage collectors may negotiate the best route to collect garbage based on real-time data from the municipality or from other agents.
+Normal agents who improperly dispose of garbage might negotiate with the system or other agents to correct their actions or avoid penalties.
+Police agents may negotiate with the municipality to adjust patrol routes or arrest agents involved in illegal garbage disposal.
+Negotiation will involve exchanging proposals, making offers, and counteroffers, depending on the agent's state (e.g., whether they have a positive or negative mark for correct or incorrect behavior).
+Agents and Their Behaviors:
+Normal Agents (Represented in dark purple):
+
+Move randomly through the environment and communicate with the city council if they encounter improperly disposed garbage.
+If they improperly dispose of garbage, they receive a negative mark. If their score reaches zero, they are arrested by the police and stop moving, becoming dark red.
+They negotiate with other agents if necessary, for example, when seeking to avoid penalties or suggesting a new garbage disposal approach.
+Proper Garbage Disposers (Represented in light purple):
+
+These agents properly dispose of garbage in designated areas and receive positive marks for correct behavior.
+They also communicate with other agents to share their success and help coordinate proper disposal practices.
+Cameras (Represented by a white rectangle):
+
+Randomly placed in the environment to detect illegal garbage locations.
+The camera range and number of cameras can be adjusted by the user, and small changes in agent behavior can have unpredictable consequences, creating emergent effects such as increased garbage detection or missed violations.
+Cameras post information on the blackboard, accessible by all agents, to encourage cooperation and timely responses.
+Garbage Collectors (Represented in green circles):
+
+These agents are responsible for collecting garbage based on reports from the cameras and the municipality.
+The garbage collector routes will be suggested by the municipality but may change dynamically based on the agents' actions (e.g., improper garbage disposal leading to additional collection points).
+They negotiate the best paths for collecting garbage and may adapt their routes based on changing circumstances.
+Police Agents (Represented in yellow):
+
+Receive data from the municipality about illegal garbage disposal.
+Police agents may negotiate with the municipality for better patrol strategies and adjust their behavior based on the agents' actions in the environment.
+After arresting an agent, they stop moving and represent that arrested agent in dark red.
+Municipality (Represented by an orange square):
+
+The municipality coordinates the overall system by managing garbage disposal routes and informing agents about proper disposal points.
+It communicates information to agents, updates the blackboard with new data, and monitors agent performance.
+Butterfly Effect:
+Small changes in agent behaviors or environmental conditions (such as a minor change in a garbage collector’s route or a single agent improperly disposing of garbage) will lead to significant, unpredictable consequences across the system.
+These emergent behaviors will cause dynamic system behavior, where small initial variations amplify into larger changes, affecting the entire city's waste disposal dynamics.
+System Features:
+The system allows users to modify the number of cameras, number of garbage collectors, and camera range.
+The communication system (peer-to-peer, broadcasting, blackboard) will ensure efficient information flow between agents.
+The negotiation and coordination mechanisms will ensure agents collaborate, adapt, and make decisions that result in self-organizing behaviors and emergent properties.
+Environment Dynamics:
+The environment consists of designated areas for garbage disposal, randomly generated at the start of the system.
+Agents will continuously move randomly, and their interactions, governed by communication, negotiation, and coordination, will create dynamic and emergent behaviors.
+The Butterfly Effect will cause small agent actions to ripple through the environment, influencing the behavior of other agents in unpredictable ways.
+Goals of the System:
+Simulate interactions between agents with real-time communication, coordination, and negotiation.
+Demonstrate emergent properties and the Butterfly Effect by allowing small changes to create larger, unpredictable impacts on the system.
+Track the number of arrests for illegal waste disposal and display it on the screen.
